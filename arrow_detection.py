@@ -22,7 +22,7 @@ def detectRed(img,hsv,font) :
     return img
 
 def main() :
-    img=cv.imread('photos/test_img_2/test5.jpg')     # image path 
+    img=cv.imread('arrow detection with angle/test_img_2/test5.jpg')     # image path 
     hsv=cv.cvtColor(img,cv.COLOR_BGR2HSV)            # converted from BGR to HSV
     font=cv.FONT_HERSHEY_COMPLEX                     # font for text
     cv.imshow("hsv",hsv)                             # showed hsv for analysis
@@ -38,7 +38,7 @@ if __name__=="__main__" :
 
 '''   FOR VIDEO CAPTURE
 
-    cap=cv.VideoCapture(1)
+    cap=cv.VideoCapture(0)
     font=cv.FONT_HERSHEY_COMPLEX
     while True:
         _,frame=cap.read()
