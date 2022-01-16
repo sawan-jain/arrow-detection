@@ -1,6 +1,5 @@
 import cv2 as cv
 import numpy as np
-from numpy.lib.function_base import i0
 
 def findAngle(img,hsv,font) :
     # boolean variable to check if a valid arrow is present or not
@@ -21,7 +20,7 @@ def findAngle(img,hsv,font) :
         # found contour with max area 
         yellow_area=max(yellowents,key=cv.contourArea)
 
-        # area = cv.contourArea(yellow_area[1])
+       # find maximum contour area
         area=cv.contourArea(yellow_area)
     
         # to find the contour with specified precision
@@ -55,7 +54,6 @@ def findAngle(img,hsv,font) :
             # cv.boundingRect() is used to find the horizontal rectangle whch encloses the figure
             # this function returns the centre(x,y),width and height of the rectangle
             (x,y,w,h)=cv.boundingRect(yellow_area)
-            #cv.rectangle(img,(x,y),(x+w,y+h),(0,255,2),2)
             textbox = cv.rectangle(img, (x-15, y-25), (center[0] + 295, center[1] + 10), (255,255,255), -1)
             cv.putText(img, label, (x,y), font, 0.7, (0,0,0), 1, cv.LINE_AA)
 
@@ -68,13 +66,16 @@ def findAngle(img,hsv,font) :
 
 
 def main() :
-
-    img=cv.imread('/home/user/Desktop/sawan code/arrow detection/test_img_2/test4.png')
-    hsv=cv.cvtColor(img,cv.COLOR_BGR2HSV)
-    font=cv.FONT_HERSHEY_COMPLEX
-    cv.imshow("hsv",hsv)
-    findAngle(img,hsv,font)
     
+    # image reading 
+    img=cv.imread('/home/user/Desktop/sawan code/arrow detection/test_img_2/test4.png')   
+    
+    #converting image from BGR to HSV for analysis and detection
+    hsv=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+    cv.imshow("hsv",hsv)
+    
+    font=cv.FONT_HERSHEY_COMPLEX
+    findAngle(img,hsv,font)
     cv.waitKey(0)
 
     # to stop the function when any key on keyboard is pressed
